@@ -8,10 +8,10 @@ if(isset($_POST['Enviar'])){
     $descripcion=trim($_POST['comentario']);
     $gravedad=$_POST['tpo_grav'];
 
-    $cons="INSERT INTO formulario_2 (paramedico, unidad_traslado, descripcion_atencion, gravedad) VALUES ('$name','$unidad','$descripcion','$gravedad')";
-    $res= mysqli_query($conexion,$cons);
+    $consulta="INSERT INTO formulario_2(paramedico, unidad_traslado, descripcion_atencion, gravedad) VALUES ('$name','$unidad','$descripcion','$gravedad')";
+    $resultado= mysqli_query($conexion,$consulta);
 
-    if($res){
+    if($resultado){
         ?>
         <?php
             include("form2_Primera_Atencion.html");
@@ -28,5 +28,4 @@ if(isset($_POST['Enviar'])){
         <?php 
     }
 }
-
 ?>
