@@ -1,2 +1,0 @@
-ESTA CARPETA TIENE QUE COPIARSE EN EL ESCRITORIO /XAMPP/mysql del escritorio local de su pc.
-Cuando hagan una modificacion en la bd, vuelven a subir esta carpeta.
