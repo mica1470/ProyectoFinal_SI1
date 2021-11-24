@@ -1,3 +1,9 @@
+<?php
+     session_start();
+     if(!isset($_SESSION['Identificacion'])){
+          header("Location:index.html");
+     }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,8 +35,25 @@
                       <span class="sr-only">Loading...</span>
             </div>
           </section>
-       <!--NAV-->
+              <!-- HEADER -->
+     <header>
+          <div class="container">
+               <div class="row">
 
+                    <div class="col-md-4 col-sm-5">
+                         <p>Bienvenido </p>
+                    </div>
+                         
+                    <div class="col-md-8 col-sm-7 text-align-right">
+                        <!-- <span class="phone-icon"><i class="fa fa-phone"></i> 010-060-0160</span>-->
+                        <!-- <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 6:00 AM - 10:00 PM (Mon-Fri)</span>-->
+                        <span class="user-icon"><i class="fa fa-user-o"></i> <?php echo $_SESSION['Identificacion'] ?> </span>
+                    </div>
+               </div>
+          </div>
+     </header>
+       <!--NAV-->
+          
           <!-- MENU -->
           <nav class="navbar navbar-default navbar-static-top" role="navigation">
                <div class="container-fluid">
@@ -51,9 +74,9 @@
                  <!-- MENU LINKS -->
                  <div class="collapse navbar-collapse">
                       <ul class="nav navbar-nav navbar-right">  
-                           <li><a  href="same.html"class="smoothScroll" >Inicio</a></li>
+                           <li><a  href="same.php"class="smoothScroll" >Inicio</a></li>
                            <li><a  href="cambiarConstraseña.html" class="smoothScroll">Cambiar contraseña</a></li>
-                           <li><a  href="index.html" class="smoothScroll">Cerrar Sesión</a></li>
+                           <li><a  href="cerrar_session.php" class="smoothScroll">Cerrar Sesión</a></li>
                       </ul>
                  </div>
   
@@ -114,7 +137,7 @@
                               </div> 
                               <div class="row col-md-6">
                                    <div class="col-md-6 col-sm-6">
-                                        <button type="button" onclick="window.location.href='form1_Antec.html'; "class="form-control" id="Volver" name="Volver">Volver</button>
+                                        <button type="button" onclick="window.location.href='form1_Antec.php';"class="form-control" id="Volver" name="Volver">Volver</button>
                                    </div> 
                               </div> 
                      </form>
@@ -131,7 +154,7 @@
              <div class="row">
                   <div class="col-md-12 col-sm-12 border-top">
                        <div class="col-md-6 col-sm-6">
-                            <a href="index.html" class="icon-foot"><i class="fa fa-h-square"></i>ealthJuy</a>
+                            <a href="same.php" class="icon-foot"><i class="fa fa-h-square"></i>ealthJuy</a>
                        </div> 
                        <div class="col-md-6 col-sm-6 ">
                             <div class="copyright-text"> 

@@ -1,3 +1,9 @@
+<?php
+     session_start();
+     if(!isset($_SESSION['Identificacion'])){
+          header("Location:index.html");
+     }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +41,23 @@ http://www.tooplate.com/view/2098-health
                <span class="spinner-rotate"></span>
           </div>
      </section>
+      <!-- HEADER -->
+      <header>
+          <div class="container">
+               <div class="row">
 
+                    <div class="col-md-4 col-sm-5">
+                         <p>Bienvenido </p>
+                    </div>
+                         
+                    <div class="col-md-8 col-sm-7 text-align-right">
+                        <!-- <span class="phone-icon"><i class="fa fa-phone"></i> 010-060-0160</span>-->
+                        <!-- <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 6:00 AM - 10:00 PM (Mon-Fri)</span>-->
+                         <span class="user-icon"><i class="fa fa-user-o"></i> <?php echo $_SESSION['Identificacion'] ?> </span>
+                    </div>
+               </div>
+          </div>
+     </header>
 
    
      <!--NAV-->
@@ -61,10 +83,9 @@ http://www.tooplate.com/view/2098-health
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                        
-                         <li><a href="same.html" class="smoothScroll">Inicio</a></li>
+                         <li><a href="same.php" class="smoothScroll">Inicio</a></li>
                          <li><a href="#team" class="smoothScroll">Configuración</a></li>
-                         <li><a href="index.html" class="smoothScroll">Cerrar Sesión</a></li>
-
+                         <li><a href="cerrar_session.php" class="smoothScroll">Cerrar Sesión</a></li>
                         
                     </ul>
                </div>
@@ -146,8 +167,8 @@ http://www.tooplate.com/view/2098-health
                          <p  data-wow-delay="0.8s"> Gravedad</p>  
                                    
                          <button type="button" class="boton btn btn-danger"><strong>Rojo</strong></button>
-                         <button type="button" onclick="window.location.href='form2_Primera_Atencion.html'; "  class="boton btn btn-primary"><strong>Azul</strong></button>
-                         <button type="button" onclick="window.location.href='form1_Antec.html'; " class="boton btn btn-success"><strong>Verde</strong></button>
+                         <button type="button" onclick="window.location.href='form2_Primera_Atencion.php'; "  class="boton btn btn-primary"><strong>Azul</strong></button>
+                         <button type="button" onclick="window.location.href='form1_Antec.php'; " class="boton btn btn-success"><strong>Verde</strong></button>
 
                     </div>
 
@@ -233,7 +254,7 @@ http://www.tooplate.com/view/2098-health
                     <div class="row">
                          <div class="col-md-12 col-sm-12 border-top">
                               <div class="col-md-6 col-sm-6">
-                                   <a href="index.html" class="icon-foot"><i class="fa fa-h-square"></i>ealthJuy</a>
+                                   <a href="same.php" class="icon-foot"><i class="fa fa-h-square"></i>ealthJuy</a>
                               </div> 
                               <div class="col-md-6 col-sm-6 ">
                                    <div class="copyright-text"> 

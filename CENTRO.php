@@ -1,15 +1,17 @@
 
 <?php 
-
-    include("db.php");
-
+    session_start();
+    if(!isset($_SESSION['Identificacion'])){
+         header("Location:index.html");
+    }
+    
  ?>
  
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-     <title>Inicio - Usuario Centro de Salud</title>
+     <title>Inicio - <?php echo $_SESSION['Identificacion'] ?></title>
 <!--
 
 Template 2098 Health
@@ -21,7 +23,7 @@ http://www.tooplate.com/view/2098-health
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
      <meta name="description" content="">
      <meta name="keywords" content="Salud,Centro,same">
-     <meta name="author" content="Micag">
+     <meta name="author" content="GRUPO6">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
      <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -29,7 +31,7 @@ http://www.tooplate.com/view/2098-health
      <link rel="stylesheet" href="css/animate.css">
      <link rel="stylesheet" href="css/owl.carousel.css">
      <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
+     <link rel="icon" href="images/logo_SAME.png">
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/tooplate-style.css">
 
@@ -63,29 +65,21 @@ http://www.tooplate.com/view/2098-health
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="index.html" class="navbar-brand"><i class="fa fa-h-square"></i>ealthJuy</a>
+                    <a href="CENTRO.php" class="navbar-brand"><i class="fa fa-h-square"></i>ealthJuy</a>
                </div>
 
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                        
-                         <li><a href="#top" class="smoothScroll">Inicio</a></li>
-                         <li><a href="#team" class="smoothScroll">Configuración</a></li>
-                         <li><a href="#news" class="smoothScroll">Cerrar Sesión</a></li>
-
-                        
+                         <li><a href="CENTRO.php" class="smoothScroll">Inicio</a></li>
+                         <li><a href="cerrar_session.php" class="smoothScroll">Cerrar Sesión</a></li>
                     </ul>
                </div>
 
           </div>
 
       </nav>
-
-
-
-    
-
 
      <!-- ABOUT -->
      <section >
@@ -94,7 +88,7 @@ http://www.tooplate.com/view/2098-health
 
                     <div class="col-md-12 col-sm-6">                               
 
-                       <h2 class="NuevoTitulo" data-wow-delay="0.6s"> Centro de Salud: Sanatorio Rosario</h2>
+                       <h2 class="NuevoTitulo" data-wow-delay="0.4s"> Centro de Salud: <?php echo $_SESSION['Identificacion'] ?></h2>
                          <br>
                          <hr>
                          <div class="about-info">
@@ -121,7 +115,6 @@ http://www.tooplate.com/view/2098-health
 
                               </div>
 
-                              <! CAMBIAR PARA LA BASE DE DATOS>
                               <div class="wow fadeInUp" data-wow-delay="0.8s">
 
                               </div>

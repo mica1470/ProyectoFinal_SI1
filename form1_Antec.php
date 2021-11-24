@@ -1,3 +1,9 @@
+<?php
+     session_start();
+     if(!isset($_SESSION['Identificacion'])){
+          header("Location:index.html");
+     }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,9 +57,8 @@ http://www.tooplate.com/view/2098-health
                     <div class="col-md-8 col-sm-7 text-align-right">
                         <!-- <span class="phone-icon"><i class="fa fa-phone"></i> 010-060-0160</span>-->
                         <!-- <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 6:00 AM - 10:00 PM (Mon-Fri)</span>-->
-                         <span class="email-icon"><i class="fa fa-envelope-o"></i> <a href="#">grupo6-2021@gamil.com</a></span>
+                        <span class="user-icon"><i class="fa fa-user-o"></i> <?php echo $_SESSION['Identificacion'] ?> </span>
                     </div>
-
                </div>
           </div>
      </header>
@@ -82,7 +87,7 @@ http://www.tooplate.com/view/2098-health
                  <ul class="nav navbar-nav navbar-right">  
                       <li><a  href="same.html"class="smoothScroll" >Inicio</a></li>
                       <li><a  href="cambiarConstraseña.html" class="smoothScroll">Cambiar contraseña</a></li>
-                      <li><a  href="index.html" class="smoothScroll">Cerrar Sesión</a></li>
+                      <li><a  href="cerrar_session.php" class="smoothScroll">Cerrar Sesión</a></li>
                  </ul>
             </div>
 
@@ -105,21 +110,21 @@ http://www.tooplate.com/view/2098-health
                               <div class="wow fadeInUp" data-wow-delay="0.8s">
                                    <div class="col-md-6 col-sm-6">
                                         <label for="name">Nombre del paciente </label>
-                                        <input type="text" class="form-control" id="name" name="nameP" placeholder="Ingrese nombre del paciente">
+                                        <input type="text" class="form-control" id="name" name="nameP" placeholder="Ingrese nombre del paciente"required="true">
                                    </div>
 
                                    <div class="col-md-6 col-sm-6">
                                         <label for="DNI"> DNI </label>
-                                        <input type="number" class="form-control" id="dni" name="dni" placeholder="Ingrese DNI del paciente">
+                                        <input type="number" class="form-control" id="dni" name="dni" placeholder="Ingrese DNI del paciente"required="true">
                                    </div>
 
                                    <div class="col-md-6 col-sm-6">
                                         <label for="telephone">Obra Social</label>
-                                        <input type="text" class="form-control" id="obraS" name="obraS" placeholder="Ingrese Obra Social">
+                                        <input type="text" class="form-control" id="obraS" name="obraS" placeholder="Ingrese Obra Social"required="true">
                                    </div>
                                     <div class="col-md-6 col-sm-6">
                                         <label for="grupo">Grupo Sanguíneo</label>
-                                        <input type="text" class="form-control" id="grupo" name="grupo" placeholder="Ingrese Grupo sanguíneo">
+                                        <input type="text" class="form-control" id="grupo" name="grupo" placeholder="Ingrese Grupo sanguíneo"required="true">
                                    </div>
                                    <div class="col-md-6 col-sm-6">
                                         <label for="alergias">Alergias del paciente</label>
@@ -147,7 +152,7 @@ http://www.tooplate.com/view/2098-health
                                     </div>
                                    
                                    <div class="col-md-12 col-sm-12">
-                                        <input type="button"  onclick="window.location.href='form2_Primera_Atencion.html'; "class="form-control" id="cf-submit" name="submitSave" value="Siguiente">
+                                        <input type="button"  onclick="window.location.href='form2_Primera_Atencion.php'; "class="form-control" id="cf-submit" name="submitSave" value="Siguiente">
                                         <input type="reset" class="form-control" id="cf-submit" name="submitCancel" value="Cancelar">
                                     <!--<input type="button" onclick="window.location.href='cambiarConstraseña.html';" class="form-control" id="cf-submit" name="submitChangePass" value="Cancelar">  -->
                                    </div>

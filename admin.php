@@ -1,3 +1,9 @@
+<?php
+     session_start();
+     if(!isset($_SESSION['Identificacion'])){
+          header("Location:index.html");
+     }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +13,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>Hola soy ADMIN</h2>
+    <h2>Hola soy <?php echo $_SESSION['Identificacion'] ?></h2>
 </body>
 </html>
