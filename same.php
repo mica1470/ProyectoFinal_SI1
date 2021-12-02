@@ -7,6 +7,15 @@ session_start();
 if (!isset($_SESSION['Identificacion'])) {
      header("Location:index.html");
 }
+if (!isset($_SESSION['CUIL'])) {
+     header("Location:index.html");
+ }
+ if(isset($_GET['del2']))
+{
+     $id2=$_GET['del2'];
+     $query2=mysqli_query($conexion,"DELETE from notificacion WHERE id='$id2' ");
+     header("location:SAME.php");
+}
 
 ?>
 
@@ -125,13 +134,63 @@ http://www.tooplate.com/view/2098-health
                <input type="button" value="Urgencia-menor"class="botonNuevomica cinco" id="boton_UMenor"onclick="javascript_to_php()" style="background-color:green;">
                
            </div>  
-          
-
-          
 
       </div>
  </section>
-    
+ <!--NOTIF VUELTA-->
+ 
+         
+     
+                    
+
+                                  
+                                 
+
+                                   
+                                   
+
+                                        <h4 class="" data-wow-delay="0.6s"style="margin-top: 255px; margin-left:890px;">Notificaciones recientes </h4>
+                                        <table class="col-md-4" id="sueño" border="3" style="margin-top: 0px; margin-left:890px;">
+                                        
+                                             
+                                             <thead>
+                                                  <tr>
+                                                       <th class="opciontabla" scope="col">Nombre del Centro</th>
+                                                       <th class="opciontabla" scope="col">Mensaje</th>
+                                                       <th class="opciontabla" scope="col">Accion</th>
+                                                  </tr>
+                                             </thead>
+
+
+                                             <?php
+                                           
+                                             $sql = "SELECT * from notificacion WHERE cuil_same='$_SESSION[CUIL]' and estado='1'";
+                                             $result = mysqli_query($conexion, $sql);
+
+                                             
+
+                                             while ($mostrar = mysqli_fetch_array($result)) {
+                                                  $sql2="SELECT Nombre FROM centrosalud WHERE CUIL='$mostrar[CUIL]'";
+                                                  $result2 = mysqli_query($conexion, $sql2);
+                                                  $mostrar2 = mysqli_fetch_array($result2);
+                                             ?>   
+
+                                                  <tr>
+
+                                                       <td><?php echo $mostrar2['Nombre']?></td>
+                                                       <td> Recibido en el CENTRO!!</td>
+                                                      
+                                                  <td><a href="#" id="Borrar" name="Borrar" onclick="pregunta2(<?php echo $mostrar['id'] ?>)" > ELIMINAR </a></td>
+                                                  </tr>
+
+                                             <?php
+                                             }
+                                             ?>
+                                        </table>
+                             
+                           
+                    
+
     
 
     
@@ -205,6 +264,7 @@ http://www.tooplate.com/view/2098-health
      <script src="js/main.js"> </script>
      <script src="js/otro.js"> </script>
      <script src="js/mapa.js"> </script>
+     <script src="js/notificacion.js"></script>
      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
@@ -214,25 +274,38 @@ http://www.tooplate.com/view/2098-health
           {    
                "progressBar":true
           });
+         
           setInterval("Update()",1000)
      </script>
+     <script>
+      function pregunta2(aux)
+     {
      
+               window.location.href= "SAME.php?del2="+aux;
+     
+     }
+     </script>
     <script>
       function va(){
           var i=document.getElementById("sec").value = "";
       }
  
     </script>
-
+<SCRIPT>
+     
+</SCRIPT>
      <script>
           
           //Funcion Update
+         
           function Update(){
-               $(document).ready(function() {
+               if($('#bus').val().length == 0){
+                    $(document).ready(function() {
           
-               $('#datos').load('phpp/buscar.php');
-                    $.ajaxSetup({ cache: false });
-               });
+                $('#datos').load('phpp/buscar.php');
+                $.ajaxSetup({ cache: false });
+                });  
+               }
           }
      </script>
    

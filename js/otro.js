@@ -1,7 +1,7 @@
 $(buscar_datos());
 var d;
 var l=0;
-
+var n;
 $(document).on('click', ".tabla_datos tr",function(){
     var dato = $(this).find('td:nth-child(2)').text();
     d = $(this).find('td:nth-child(5)').text();
@@ -14,6 +14,11 @@ $(document).on('click', ".tabla_datos tr",function(){
     
   });
 
+//DESDE EL BOTON ESCONDIDO
+function javascript_to_php4() {
+        
+        
+}
 //DESDE EL BOTON ROJO
 function javascript_to_php3() {
   
@@ -22,7 +27,8 @@ function javascript_to_php3() {
                 alert("Debe seleccionar un Centro de Salud.");
                 return false;
     }else{
-        confirm('Enviar Notificación?');
+        $("#q").val(d);
+        window.open('xd2.php'+"?w4="+d,"", "width=300,height=150,left=950,top=250,toolbar=yes");    
     }
        
 }

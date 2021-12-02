@@ -14,6 +14,13 @@ if(isset($_GET['del']))
      $query=mysqli_query($conexion,"DELETE FROM formulario_1 WHERE id_paciente='$id'");
      header("location:CENTRO.php");
 }
+
+if(isset($_GET['del2']))
+{
+     $id2=$_GET['del2'];
+     $query2=mysqli_query($conexion,"UPDATE notificacion SET estado='1' WHERE id='$id2' ");
+     header("location:CENTRO.php");
+}
 session_write_close();
 ?>
 
@@ -59,14 +66,7 @@ http://www.tooplate.com/view/2098-health
 
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
-     <!-- PRE LOADER -->
-     <section class="preloader">
-          <div class="spinner">
-
-               <span class="spinner-rotate"></span>
-
-          </div>
-     </section>
+     
 
 
      <!--NAV-->
@@ -140,7 +140,61 @@ http://www.tooplate.com/view/2098-health
           </div>
      </section>
 
+     <!-- NOTIF -->
+<section  id="news" data-stellar-background-ratio="2">
+          <div class="container">
+               <div class="row">
+                    <div class="news-info">
+                              <div class="news-thumb wow fadeInUp col-md-12">
+                                   <br>
+                                   <h4 class="Nuevoh3" data-wow-delay="0.6s">Notificaciones recientes </h4>
 
+                                   <br>
+                                   <form class="form-inline">
+
+
+                                        <table class="Tabla table table-striped col-md-12" border="3">
+
+                                             <thead>
+                                                  <tr>
+                                                       <th class="opciontabla" scope="col">Usuario del SAME</th>
+                                                       <th class="opciontabla" scope="col">Mensaje</th>
+                                                       <th class="opciontabla" scope="col">Confirmacion</th>
+                                                  </tr>
+                                             </thead>
+
+
+                                             <?php
+                                           
+                                             $sql = "SELECT * from notificacion WHERE CUIL='$_SESSION[CUIL]' and id_tpo='1'and estado='0'";
+                                             $result = mysqli_query($conexion, $sql);
+
+                                             while ($mostrar = mysqli_fetch_array($result)) {
+                                             ?>
+                                                  <tr>
+
+                                                       <td><?php echo $mostrar['Nombre_Usuario'] ?></td>
+                                                       <td> Urgencia inmediata!!!</td>
+                                                      
+                                                  <td><a href="#" id="Borrar" name="Borrar" onclick="pregunta2(<?php echo $mostrar['id'] ?>)" > RECIBIDO </a></td>
+                                                  </tr>
+                                             <?php
+                                             }
+                                             ?>
+                                        </table>
+                             
+                                        <br><br>
+                                   </form> 
+                                   <br><br>
+                              </div>
+                              <hr>
+                              <hr>
+                    
+                    </div>
+               </div>
+          </div>
+
+     </section>
      <!-- ABOUT -->
      <section  id="news" data-stellar-background-ratio="2">
           <div class="container">
@@ -268,7 +322,9 @@ http://www.tooplate.com/view/2098-health
                        </div>
                   </div>
 
+               <div id="notificaciones">
 
+               </div>
 
     <div class="col-md-12 col-sm-12 border-top">
          <div class="col-md-4 col-sm-6">
@@ -333,6 +389,14 @@ http://www.tooplate.com/view/2098-health
           }
      }
      </script>
+      <script type="text/javascript"> 
+     function pregunta2(aux)
+     {
+     
+               window.location.href= "CENTRO.php?del2="+aux;
+     
+     }
+     </script>
      
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -352,6 +416,7 @@ http://www.tooplate.com/view/2098-health
      <script src="js/smoothscroll.js"></script>
      <script src="js/owl.carousel.min.js"></script>
      <script src="js/custom.js"></script>
+     <script src="js/notificacion.js"></script>
      <script>
           function goBack() {
           window.history.go(-2);
