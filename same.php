@@ -1,9 +1,15 @@
 <?php
-     session_start();
-     if(!isset($_SESSION['Identificacion'])){
-          header("Location:index.html");
-     }
+
+include("db.php");
+
+error_reporting(E_ALL ^ E_NOTICE);
+session_start();
+if (!isset($_SESSION['Identificacion'])) {
+     header("Location:index.html");
+}
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,49 +28,37 @@ http://www.tooplate.com/view/2098-health
      <meta name="keywords" content="">
      <meta name="author" content="Tooplate">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-     <link rel="icon" href="images/logo_SAME.png">
+         <!--BORRAR CACHE XD-->
+     <meta http-equiv="Expires" content="0">
+     <meta http-equiv="Last-Modified" content="0">
+     <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+     <meta http-equiv="Pragma" content="no-cache">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600|Open+Sans"> 
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
      <link rel="stylesheet" href="css/bootstrap.min.css">
      <link rel="stylesheet" href="css/font-awesome.min.css">
      <link rel="stylesheet" href="css/animate.css">
      <link rel="stylesheet" href="css/owl.carousel.css">
      <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
+     <link rel="icon" href="images/logo_SAME.png">
      <!-- MAIN CSS -->
      <link rel="stylesheet" href="css/tooplate-style.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 </head>
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
-     <!-- PRE LOADER -->
-     <section class="preloader">
-          <div class="spinner">
-               <span class="spinner-rotate"></span>
-          </div>
-     </section>
-      <!-- HEADER -->
-      <header>
-          <div class="container">
-               <div class="row">
-
-                    <div class="col-md-4 col-sm-5">
-                         <p>Bienvenido </p>
-                    </div>
-                         
-                    <div class="col-md-8 col-sm-7 text-align-right">
-                        <!-- <span class="phone-icon"><i class="fa fa-phone"></i> 010-060-0160</span>-->
-                        <!-- <span class="date-icon"><i class="fa fa-calendar-plus-o"></i> 6:00 AM - 10:00 PM (Mon-Fri)</span>-->
-                         <span class="user-icon"><i class="fa fa-user-o"></i> <?php echo $_SESSION['Identificacion'] ?> </span>
-                    </div>
-               </div>
-          </div>
-     </header>
-
-   
      <!--NAV-->
 
-          <!-- MENU -->
-           <nav class="navbar navbar-default navbar-static-top" role="navigation">
-             <div class="container-fluid">
+     <!-- MENU -->
+     <nav class="navbar navbar-default navbar-static-top" role="navigation">
+          <div class="container-fluid">
 
                <div class="navbar-header">
                     <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -76,196 +70,127 @@ http://www.tooplate.com/view/2098-health
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="index.html" class="navbar-brand"><i class="fa fa-h-square"></i>ealthJuy</a>
+                    <a href="#" class="navbar-brand"><i class="fa fa-h-square"></i>ealthJuy</a>
                </div>
 
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                       
-                         <li><a href="same.php" class="smoothScroll">Inicio</a></li>
-                         <li><a href="#team" class="smoothScroll">Configuración</a></li>
-                         <li><a href="cerrar_session.php" class="smoothScroll">Cerrar Sesión</a></li>
-                        
+                         <li><a href="SAME.php" class="smoothScroll wow fadeInUp" data-wow-delay="0.5s">Inicio</a></li>
+                         <li><a href="#Contacto" class="smoothScroll wow fadeInUp" data-wow-delay="0.5s">Contacto</a></li>
+                         <li><a href="cerrar_session.php" class="smoothScroll wow fadeInUp" data-wow-delay="0.5s">Cerrar Sesión</a></li>
                     </ul>
                </div>
 
           </div>
 
-      </nav>
-
-
-
-    
-
-
-     <!-- ABOUT -->
-     <section >
-          <div class="container">
-               <div class="row">
-
-                    <div class="col-md-12 col-sm-6">                               
-
-                       <h2 class="NuevoTitulo" data-wow-delay="0.6s"> Inicio SAME</h2>
-                         <br>
-                         <hr>
-                         
-                    </div>
-               </div>
+     </nav>
+<section>
+     <div id="news" >
+          <div  id="tituloayuda" class="col-md-12 col-sm-6">
+               <h2 class="NuevoTitulo" data-wow-delay="0.4s"> SAME 107</h2>
           </div>
-     </section>
 
-
-
-     <!-- GOOGLE MAP -->
-     <section id="google-map">
-     <!-- How to change your own map point
-            1. Go to Google Maps
-            2. Click on your location point
-            3. Click "Share" and choose "Embed map" tab
-            4. Copy only URL and paste it within the src="" field below
-	-->
+     </div>
+</section>
+<section>
      <div class="container">
-               <div class="row">
-
-                    <div class="about-info">
-
-                              <div class="wow fadeInUp" data-wow-delay="0.8s">
-
-                                   <div class="col-md-7 col-sm-6"> 
-                                        <p class="Nuevoh3 " data-wow-delay="0.8s"> Seleccione la region</p> 
-                                   <select class=" form-control form-control-lg ">
-                                        <option class="region" selected>Region X </option>
-                                        <option value="1"> Uno </option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                   </select>
-                                   <hr>
-
-                                   </div>
-                              
-                              </div>
-                    
-                         </div>
-                         
-                    <div class="Mapa col-md-6"><br> <br><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d116415.35391370933!2d-65.3690432958156!3d-24.242484918245633!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x941b0f4e8bd7a62f%3A0x315150e057f6e499!2sSan%20Salvador%20de%20Jujuy%2C%20Jujuy!5e0!3m2!1ses-419!2sar!4v1636079238476!5m2!1ses-419!2sar" width="600" height="600" style="border:0" allowfullscreen="" loading="lazy"></iframe> </div>
-
-
-                    <div class="MenorEdad col-md-4 col-md-offset-1">
-                     <br> <br>       
-                              <div class="form-check"><br>   
-                                <input class="form-check-input" type="checkbox" value="Menor" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault">
-                               <br>
-                                 <p  data-wow-delay="0.8s"> Menor de Edad </p> 
-                                </label>
-                              </div>  
-
-                    </div>
-                     
-                     <div class="Gravedad col-md-4 col-md-offset-1">
-                         <p  data-wow-delay="0.8s"> Gravedad</p>  
-                                   
-                         <button type="button" class="boton btn btn-danger"><strong>Rojo</strong></button>
-                         <button type="button" onclick="window.location.href='form2_Primera_Atencion.php'; "  class="boton btn btn-primary"><strong>Azul</strong></button>
-                         <button type="button" onclick="window.location.href='form1_Antec.php'; " class="boton btn btn-success"><strong>Verde</strong></button>
-
-                    </div>
-
-                    <div class="ObraSocial col-md-4 col-md-offset-1 ">
-                              <p  data-wow-delay="0.8s"> Obra Social</p>  
-                                   <select class="form-control form-control-lg ">
-                                      <option class="ObraSocial" selected>... </option>
-                                        <option value="Instituto">Instituto de Seguros</option>
-                                        <option value="PAMI">PAMI</option>
-                                        <option value="Otro">Otro</option>
-                                   </select>
-                    </div>
-
-                    <div class=" col-md-1 col-md-offset-4 ">
-                         <br><br><br>
-                         <button type="button" class="Buscar btn btn-light"><strong>Buscar</strong></button>
-                    </div>
-
-                          <br><br><br>
-                                   <div class="col-md-4 col-md-offset-1"> 
-                                        <h3 class= "Lista" data-wow-delay="0.8s"> <strong> Lista Recientes </strong></h3> 
-
-                                           <br><br><br>
-
-                                        <select class="Filtro1 form-control form-control-lg ">
-                                             <option class="Filtro" selected>Filtro </option>
-                                             <option value="Cercanía">Cercanía</option>
-                                             <option value="Camas">N° de Camas</option>
-                                             <option value="Tiempo">Tiempo</option>
-                                         </select>
-                                           <br><br><br>
-
-                                             <table class="Tabla table table-striped">
-                                               <thead>
-                                                 <tr>
-                                                   <th scope="col">#</th>
-                                                   <th scope="col">Nombre</th>
-                                                   <th scope="col">N° camas</th>
-                                                   <th scope="col">Tiempo</th>
-                                                 </tr>
-                                               </thead>
-                                               <tbody>
-                                                 <tr>
-                                                   <th scope="row">1</th>
-                                                   <td>Hospital 1</td>
-                                                   <td>5</td>
-                                                   <td>2 min.</td>
-                                                 </tr>
-                                                 <tr>
-                                                   <th scope="row">2</th>
-                                                   <td>Hospital 2</td>
-                                                   <td>7</td>
-                                                   <td>13 min.</td>
-                                                 </tr>
-                                                 <tr>
-                                                   <th scope="row">3</th>
-                                                   <td>Hospital 3</td>
-                                                   <td>9</td>
-                                                   <td>39 min.</td>
-                                                 </tr>
-                                                 <tr>
-                                                   <th scope="row">4</th>
-                                                   <td>Hospital 4</td>
-                                                   <td>11</td>
-                                                   <td>200 min.</td>
-                                                 </tr>
-                                               </tbody>
-                                             </table>
-                                   </div>
-                         </div>
-                    </div>
+          <div class="row">
+               <div class="form-1-2  col-md-4"  id="buscando"> 
+               
+                    <label for ="bus"> Buscar </label>
+                    <input type="text" class="form-control" placeholder="Busqueda..." name="bus" id="bus">
+               </div>
+               <div id="datos" class="col-md-8">
                     
                </div>
-          </div>
-     </section>           
-
 
  
+          </div>
 
-           <!-- FOOTER -->
-           <footer data-stellar-background-ratio="5">
-               <div class="container">
-                    <div class="row">
-                         <div class="col-md-12 col-sm-12 border-top">
-                              <div class="col-md-6 col-sm-6">
-                                   <a href="same.php" class="icon-foot"><i class="fa fa-h-square"></i>ealthJuy</a>
-                              </div> 
-                              <div class="col-md-6 col-sm-6 ">
-                                   <div class="copyright-text"> 
-                                        <p>Copyright &copy; 2021 Todos los derechos reservados| Design: Grupo6</p>
-                                   </div>
+     </div>
+</section>
+ <!--gravedad botones-->
+ <section>
+      <div >
+               
+               <div class="col-md-4" id="tex">
+                    <input type ="text" class="form-control" placeholder="seleccion..." id="seca" readonly onmousedown="return false;" >
+                   
+                </div> 
+           <div class="col-md-8" id="bont">
+
+               <input type="submit"  value="Inmediato" class="botonNuevomica cinco" id="boton_Inm" style="background-color: red;" onclick="javascript_to_php3()">
+               <input type="submit" value="Urgencia"class="botonNuevomica cinco" id="boton_Inm"  onclick="javascript_to_php2()" style="background-color:tomato;">
+               <input type="button" value="Urgencia-menor"class="botonNuevomica cinco" id="boton_UMenor"onclick="javascript_to_php()" style="background-color:green;">
+               
+           </div>  
+          
+
+          
+
+      </div>
+ </section>
+    
+    
+
+    
+     <!-- FOOTER -->
+     <footer id="fAngela" data-stellar-background-ratio="2">
+
+          <div id="Contacto" class="container">
+               <div class="row">
+                    <div class="col-md-6 col-sm-4">
+                         <div class="footer-thumb"> 
+                              <h4 class="wow fadeInUp" data-wow-delay="0.4s">Informacion de Contacto</h4>
+                              <p>Si requiere contactar con algun administrador recurra al siguiente numero</p>
+                              
+                              <div class="contact-info">
+                                  <h4 > CONTACTO: </h4>
+                                   <p><i class="fa fa-name">C</i> Grupo: GRUPO 6</p>            
+                                   <p><i class="fa fa-phone"></i> Teléfono: 3884470452 </p>
+                                   <p> <i class="fa fa-envelope-o"></i> Email: <a href="mailto:sistema_info_g6@gmail.com"> sistema_info_g6@gmail.com </a> </p>
                               </div>
                          </div>
-                         
                     </div>
-               </div>
-          </footer>
+  
+  
+                    <div class="col-md-6 col-sm-4"> 
+                         <div class="footer-thumb">
+                              <div class="opening-hours">
+                                   <h4 class="wow fadeInUp" data-wow-delay="0.4s">Horarios disponibles</h4>
+                                   <p>Lunes - Viernes <span> 08:00 AM - 08:00 PM</span></p>
+                                   <p>Sabados<span>09:00 AM - 05:00 PM</span></p>
+                                   <p>Domingos<span>Cerrado</span></p>
+                              </div> 
+  
+                              <ul class="social-icon">
+                                   <li><a href="https://www.facebook.com/profile.php?id=100009407626005" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                   <li><a href="https://twitter.com/MicaGalian" class="fa fa-twitter"></a></li>
+                                   <li><a href="https://www.instagram.com/mica.galian/?hl=es" class="fa fa-instagram"></a></li>
+                              </ul>
+                         </div>
+                    </div>
+  
+  
+  
+      <div class="col-md-12 col-sm-12 border-top">
+           <div class="col-md-4 col-sm-6">
+                <div class="copyright-text">
+                     <p>Copyright &copy; 2021 - Proyecto del Grupo 6 </p>
+                </div>
+           </div>
+  
+           <div class="col-md-2 col-sm-2 text-align-center">
+                <div class="angle-up-btn  text-align-center">
+                     <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"><i class="fa fa-angle-up"></i></a>
+                </div>
+           </div>
+      </div>
+  
+      </div>
+      </div>
+  </footer>
 
      <!-- SCRIPTS -->
      <script src="js/jquery.js"></script>
@@ -276,6 +201,42 @@ http://www.tooplate.com/view/2098-health
      <script src="js/smoothscroll.js"></script>
      <script src="js/owl.carousel.min.js"></script>
      <script src="js/custom.js"></script>
+     <script src="js/buscador.js"></script>
+     <script src="js/main.js"> </script>
+     <script src="js/otro.js"> </script>
+     <script src="js/mapa.js"> </script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/0.0.11/push.min.js"></script>
+     <script>
+            
+            toastr.info('Inicio de sesion realizado con éxito.','Bienvenido <?php echo $_SESSION['Identificacion'];?>!', 
+          {    
+               "progressBar":true
+          });
+          setInterval("Update()",1000)
+     </script>
+     
+    <script>
+      function va(){
+          var i=document.getElementById("sec").value = "";
+      }
+ 
+    </script>
 
+     <script>
+          
+          //Funcion Update
+          function Update(){
+               $(document).ready(function() {
+          
+               $('#datos').load('phpp/buscar.php');
+                    $.ajaxSetup({ cache: false });
+               });
+          }
+     </script>
+   
+  
+ 
 </body>
 </html>

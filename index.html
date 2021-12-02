@@ -23,6 +23,8 @@
      <link rel="stylesheet" href="css/owl.carousel.css">
      <link rel="stylesheet" href="css/owl.theme.default.min.css">
      <link rel="stylesheet" href="css/estilo1.css">
+
+   
      <!--Con font awasome-->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
      <!-- MAIN CSS -->
@@ -57,20 +59,24 @@
                     </div>
                     <form action="validar.php" method="post">
                          <div class="modal-body">
-                             
                                    <div class="form-group">
-                                        <input type="number"  placeholder="CUIL/CUIT" class="icono-placeholder" name="CUIL" maxlength="11" required="true">
+                                        <input type="number"  placeholder="CUIL/CUIT" class="icono-placeholder" min="0" name="CUIL" maxlength="11" required="true">
                                    </div>
                                    <div class="form-group">
-                                        <input type="password" placeholder="Contraseña" class="password" name="contraseña" required="true">
-                                   </div>   
+                                             <input type="password" ID="txtPassword" placeholder="Contraseña" class="Password" name="contraseña" required="true">
+                                   </div>  
+                                   <div class="form-group">
+                                        Mostrar contraseña 
+                                        <button  class="btn btn-primary btn-sm"id="Show_Password" type="button" onclick="mostrarPassword()"> <span class="fa fa-eye-slash icon"></span> </button>
+                                   </div>
+
                                    <div class="olvidar">
-                                        <a href="index.html" >¿Olvidaste tu contraseña?</a>
+                                        <a href="olvidasteClave.html" >¿Olvidaste tu contraseña?</a>
                                    </div>  
                          
                          </div>
                          <div class="modal-footer">    
-                              <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt" name="ingresar"></i><a href="validar.php"> Ingresar </a> </button>
+                              <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt" name="ingresar"></i>Ingresar </button>
 
                          </div>
                 </form>
@@ -106,10 +112,32 @@
      <script src="js/smoothscroll.js"></script>
      <script src="js/owl.carousel.min.js"></script>
      <script src="js/custom.js"></script>
+      <!-- Carousel de fotos del Fondo -->
      <script type="text/javascript">
           $(document).ready(function() {
             $('.carousel').carousel({interval: 3000});
           });
      </script>
+
+     <!-- Mostrar la contraseña -->
+          <script type="text/javascript">
+               function mostrarPassword(){
+                         var cambio = document.getElementById("txtPassword");
+                         if(cambio.type == "password"){
+                              cambio.type = "text";
+                              $('.icon').removeClass('fa fa-eye-slash').addClass('fa fa-eye');
+                         }else{
+                              cambio.type = "password";
+                              $('.icon').removeClass('fa fa-eye').addClass('fa fa-eye-slash');
+                         }
+                    } 
+                    
+                    $(document).ready(function () {
+                    //CheckBox mostrar contraseña
+                    $('#ShowPassword').click(function () {
+                         $('#Password').attr('type', $(this).is(':checked') ? 'text' : 'password');
+                    });
+               });
+          </script>
 </body>
 </html>

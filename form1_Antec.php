@@ -1,8 +1,10 @@
 <?php
+     include("db.php");
      session_start();
      if(!isset($_SESSION['Identificacion'])){
           header("Location:index.html");
      }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +35,7 @@ http://www.tooplate.com/view/2098-health
      <link rel="stylesheet" href="css/tooplate-style.css">
 
 </head>
-<body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+<body id="top" class="form1" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
 
      <!-- PRE LOADER -->
      <section class="preloader">
@@ -85,7 +87,7 @@ http://www.tooplate.com/view/2098-health
             <!-- MENU LINKS -->
             <div class="collapse navbar-collapse">
                  <ul class="nav navbar-nav navbar-right">  
-                      <li><a  href="same.html"class="smoothScroll" >Inicio</a></li>
+                      <li><a  href="same.php"class="smoothScroll" >Inicio</a></li>
                       <li><a  href="cambiarConstraseña.html" class="smoothScroll">Cambiar contraseña</a></li>
                       <li><a  href="cerrar_session.php" class="smoothScroll">Cerrar Sesión</a></li>
                  </ul>
@@ -94,70 +96,81 @@ http://www.tooplate.com/view/2098-health
        </div>
 
    </nav>
-
+     
      <!-- FORMULARIO 1-->
      <section id="appointmen" data-stellar-background-ratio="3">
-          <div class="container">
+     
+          <div class="container" id="imagenForm1">
+         
                <div class="row">
-                    <div class="col-md-6 col-sm-6">
+                 
+                    <div class="news-info">
+                         <div class="news-thumb  col-md-8 col-sm-8" id="formulario">
                          <!-- SECTION TITLE -->
-                         <div class="section-title wow fadeInUp" data-wow-delay="0.3s">
-                              <h1>Formulario: Antedecentes Médicos</h1>
+                         <div class="section-title wow fadeInUp" id="tituloForm" data-wow-delay="0.3s">
+                              <h2>Formulario: Antedecentes Médicos</h2>
                           </div>
                           <!-- CONTACT FORM HERE -->
-                         <form id="appointment-form" role="form"  action="registrar_form1.php" method="post">
-
+                         <form id="appointment-form" role="form"  action="registrar_form1.php"method="post">
+                             <!-- TRAEEE EL CUIL DESDE LA URL PARA PASARLO POR EL METODO POST -->
+                              <input type="hidden" class="form-control" id="CUIL" name="CUIL" minlength="7"  maxlength="9" min="1" value="<?php echo $_GET['w1']; ?>" readonly>
+                              
                               <div class="wow fadeInUp" data-wow-delay="0.8s">
                                    <div class="col-md-6 col-sm-6">
-                                        <label for="name">Nombre del paciente </label>
-                                        <input type="text" class="form-control" id="name" name="nameP" placeholder="Ingrese nombre del paciente"required="true">
+                                        <label for="name" class="control-label">Nombre del paciente</label>
+                                        <input type="text" class="form-control" id="name" name="nameP"  placeholder="Ingrese nombre del paciente"required="true">
                                    </div>
 
                                    <div class="col-md-6 col-sm-6">
-                                        <label for="DNI"> DNI </label>
-                                        <input type="number" class="form-control" id="dni" name="dni" placeholder="Ingrese DNI del paciente"required="true">
+                                        <label for="DNI"class="control-label"> DNI </label>
+                                        <input type="number" class="form-control" id="dni" name="dni" minlength="7"  maxlength="9" min="1" placeholder="Ingrese DNI del paciente"required="true">
                                    </div>
 
+
                                    <div class="col-md-6 col-sm-6">
-                                        <label for="telephone">Obra Social</label>
+                                        <label for="telephone"class="control-label">Obra Social</label>
                                         <input type="text" class="form-control" id="obraS" name="obraS" placeholder="Ingrese Obra Social"required="true">
                                    </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <label for="grupo">Grupo Sanguíneo</label>
+                                        <label for="grupo"class="control-label">Grupo Sanguíneo</label>
                                         <input type="text" class="form-control" id="grupo" name="grupo" placeholder="Ingrese Grupo sanguíneo"required="true">
                                    </div>
                                    <div class="col-md-6 col-sm-6">
                                         <label for="alergias">Alergias del paciente</label>
-                                        <textarea name="alergias" placeholder="Ingrese alergias del paciente" cols="30" rows="8"></textarea>
+                                        <textarea name="alergias" placeholder="Ingrese alergias del paciente" cols="45" rows="8"></textarea>
                                    </div>
 
                                     <div class="lista">
                                          <ul>
-                                              <li><input type="checkbox" id="cbox1" value="Si" name="first_checkbox"> 
-                                                  <label for="cbox1">¿Sufre de enfermedades cardiacas?</label></li>
-                                             <li> <input type="checkbox" id="cbox2" value="Si" name="second_checkbox"> 
-                                                  <label for="cbox2">¿Sufre enfermedades venereas?</label> </li>
-                                             <li> <label>¿Cuales?</label> </li>  
-                                             <li><input type="checkbox" id="cbox3" value="Si" name="third_checkbox"> 
-                                                  <label for="cbox3">VIH</label></li>
-                                             <li> <input type="checkbox" id="cbox4" value="Si" name="fourth_checkbox"> 
-                                                  <label for="cbox4">Clamidia</label></li>
-                                             <li> <input type="checkbox" id="cbox5" value="Si" name="fifth_checkbox"> 
-                                                  <label for="cbox5">Gonorrea</label></li>
-                                             <li> <input type="checkbox" id="cbox6" value="Si" name="sixth_checkbox"> 
-                                                  <label for="cbox6">Herpes</label></li>
-                                             <li> <input type="checkbox" id="cbox7" value="Si" name="seventh_checkbox"> 
-                                                  <label for="cbox7">Sifilis</label></li>
+                                              <li>
+                                                  <label for="cbox1" id="cb1"><input type="checkbox" id="cbox1" value="Si" name="opcion1"> ¿Sufre de enfermedades cardiacas?</label></li>
+                                             <li> 
+                                                  <label for="cbox2" id="cb2"><input type="checkbox" id="cbox2" value="Si" name="opcion2"> ¿Sufre enfermedades venereas?</label> </li>
+                                             
+                                             <li> <label style="font-weight: bold" id="cuales">¿Cuales?</label> </li>  
+                                             <li>
+                                                  <label for="cbox3" id="cb3"><input type="checkbox" id="cbox3" value="VIH" name="opcion[]"> VIH</label></li>
+                                             <li> 
+                                                  <label for="cbox4" id="cb4"><input type="checkbox" id="cbox4" value="Clamidia" name="opcion[]"> Clamidia</label></li>
+                                             <li> 
+                                                  <label for="cbox5" id="cb5"><input type="checkbox" id="cbox5" value="Gonorrea" name="opcion[]"> Gonorrea</label></li>
+                                             <li> 
+                                                  <label for="cbox6" id="cb6"><input type="checkbox" id="cbox6" value="Herpes" name="opcion[]"> Herpes</label></li>
+                                             <li> 
+                                                  <label for="cbox7" id=cb7><input type="checkbox" id="cbox7" value="Sifilis" name="opcion[]"> Sifilis</label></li>
                                          </ul>
                                     </div>
-                                   
+                                    <div class="col-md-12 col-sm-12">
+                                        <button type="submit" class="form-control" id="cf-submit" name="Siguiente" >Siguiente</button>
+                                    <!--<input type="button" onclick="window.location.href='cambiarConstraseña.html';" class="form-control" id="cf-submit" name="submitChangePass" value="Cancelar">  -->
+                                   </div>
                                    <div class="col-md-12 col-sm-12">
-                                        <input type="button"  onclick="window.location.href='form2_Primera_Atencion.php'; "class="form-control" id="cf-submit" name="submitSave" value="Siguiente">
                                         <input type="reset" class="form-control" id="cf-submit" name="submitCancel" value="Cancelar">
                                     <!--<input type="button" onclick="window.location.href='cambiarConstraseña.html';" class="form-control" id="cf-submit" name="submitChangePass" value="Cancelar">  -->
                                    </div>
                               </div>
-                        </form>
+                         </form>
+                      </div>
                     </div>
 
                </div>
@@ -192,6 +205,8 @@ http://www.tooplate.com/view/2098-health
      <script src="js/smoothscroll.js"></script>
      <script src="js/owl.carousel.min.js"></script>
      <script src="js/custom.js"></script>
-
+     <script src="js/main.js"></script>
+     <script src="js/otro.js"></script>
+     
 </body>
 </html>

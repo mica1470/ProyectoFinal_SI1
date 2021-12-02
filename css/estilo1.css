@@ -1,15 +1,17 @@
-.password::placeholder{
+.Password::placeholder{
     background-image: url(../images/password.png);
     background-size: 15px;
     background-repeat: no-repeat;
-    background-position:right ;
+    background-position:left ;
+    text-align: center;
 }
 
 .icono-placeholder::placeholder {
     background-image: url(../images/usericon.png);
-    background-size: 15px;
+    background-size: 15px 15px;
     background-repeat: no-repeat;
-    background-position:right;
+    background-position:left center;
+    text-align: center;
 }
 
 .main-section{
@@ -41,6 +43,7 @@
     position: relative;
     z-index: -99; 
   }
+
 .carousel .item {
     position: fixed; 
     width: 100%; height: 100%;
@@ -70,4 +73,7 @@
     left:0;
     opacity:0;
     z-index:2;
+}
+#carouself2{
+    width: 10%;
 }
