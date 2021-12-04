@@ -11,7 +11,7 @@ if (!isset($_SESSION['Identificacion'])) {
 if(isset($_GET['del']))
 {
      $id=$_GET['del'];
-     $query=mysqli_query($conexion,"DELETE FROM formulario_1 WHERE id_paciente='$id'");
+     $query=mysqli_query($conexion,"DELETE FROM formulario_1 WHERE id='$id'");
      header("location:CENTRO.php");
 }
 
@@ -153,7 +153,7 @@ http://www.tooplate.com/view/2098-health
                                    <form class="form-inline">
 
 
-                                        <table class="Tabla table table-striped col-md-12" border="3">
+                                        <table class="Tabla table table-striped col-md-12" id="tablaNoti" border="3">
 
                                              <thead>
                                                   <tr>
@@ -216,6 +216,7 @@ http://www.tooplate.com/view/2098-health
                                                        <th class="opciontabla" scope="col">DNI</th>
                                                        <th class="opciontabla" scope="col">Nombre del paciente</th>
                                                        <th class="opciontabla" scope="col">Obra Social</th>
+                                                       <th class="opciontabla" scope="col">Descripcion</th>
                                                        <th class="opciontabla" scope="col">Fecha de Traslado</th>
                                                        <th class="opciontabla" scope="col">Acciones</th>
 
@@ -225,7 +226,7 @@ http://www.tooplate.com/view/2098-health
 
 
                                              <?php
-                                             $sql = "SELECT * from formulario_1 WHERE nombre_paciente!='' and CUIL='$_SESSION[CUIL]'";
+                                             $sql = "SELECT * from formulario_1 WHERE  CUIL='$_SESSION[CUIL]'";
                                              $result = mysqli_query($conexion, $sql);
 
                                              while ($mostrar = mysqli_fetch_array($result)) {
@@ -235,6 +236,7 @@ http://www.tooplate.com/view/2098-health
                                                        <td><?php echo $mostrar['DNI'] ?></td>
                                                        <td><?php echo $mostrar['nombre_paciente'] ?></td>
                                                        <td><?php echo $mostrar['obra_social'] ?></td>
+                                                       <td><?php echo $mostrar['descripcion_atencion'] ?></td>
                                                        <td><?php echo $mostrar['fecha_atencion'] ?></td>
                                                       
                                                   <td><a href="#" id="Borrar" name="Borrar" onclick="preguntar(<?php echo $mostrar['id'] ?>)" > Eliminar </a></td>
@@ -263,17 +265,19 @@ http://www.tooplate.com/view/2098-health
 
      </section>
 
+     <!-- NOTIFICACION EN EL ESCRITORIO
      <section  id="news" data-stellar-background-ratio="1">
      <div class="contenedor">
                <article>
-               <button class="btn btn-success" id="notificacion" onclick="notificar()" >Enviar Notificacion emergente</button>
-			<button id="btn-abrir-popup" class="btn-abrir-popup">Abrir Ventana Emergente</button>
+               <button class="btn btn-success" id="notificacion" onclick="notficar() type="hidden" >Enviar Notificacion emergente</button>
+			
 		     </article>
                <div class="overlay" id="overlay">
 			<div class="popup" id="popup">
 				<a href="#" id="btn-cerrar-popup" class="btn-cerrar-popup"><i class="fas fa-times"></i></a>
 				<h4 style="  font-weight: bold" >Notificacion abierta</h4>
                     <hr>
+                  
                     <h5 class="mb-0"> El paciente presenta sintomas...</h5>
                     <hr>
 				<form action="">
@@ -282,7 +286,7 @@ http://www.tooplate.com/view/2098-health
 			</div>
 		</div>
           </div>    
-     </section>
+     </section> -->
 
      
      <!-- FOOTER -->
@@ -374,6 +378,11 @@ http://www.tooplate.com/view/2098-health
                          
                               overlay.classList.add('active');
                               popup.classList.add('active');
+                              btnCerrarPopup.addEventListener('click', function(e){
+                              e.preventDefault();
+                              overlay.classList.remove('active');
+                              popup.classList.remove('active');
+                              });
                      }
                 }
           }
@@ -389,6 +398,7 @@ http://www.tooplate.com/view/2098-health
           }
      }
      </script>
+     
       <script type="text/javascript"> 
      function pregunta2(aux)
      {
@@ -406,6 +416,7 @@ http://www.tooplate.com/view/2098-health
           {    
                "progressBar":true
           });
+        
      </script>
      <script src="js/popup.js"></script>
      <script src="js/jquery.js"></script>
@@ -422,6 +433,7 @@ http://www.tooplate.com/view/2098-health
           window.history.go(-2);
           }
 </script>
+
 </body>
 
 </html>

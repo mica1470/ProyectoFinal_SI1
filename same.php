@@ -138,16 +138,6 @@ http://www.tooplate.com/view/2098-health
       </div>
  </section>
  <!--NOTIF VUELTA-->
- 
-         
-     
-                    
-
-                                  
-                                 
-
-                                   
-                                   
 
                                         <h4 class="" data-wow-delay="0.6s"style="margin-top: 255px; margin-left:890px;">Notificaciones recientes </h4>
                                         <table class="col-md-4" id="sueño" border="3" style="margin-top: 0px; margin-left:890px;">
